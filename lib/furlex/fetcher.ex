@@ -12,7 +12,7 @@ defmodule Furlex.Fetcher do
   """
   @spec fetch(String.t) :: {:ok, String.t, Integer.t} | {:error, Atom.t}
   def fetch(url) do
-    case HTTPoison.get(url) do
+    case HTTPoison.get(url, [{"User-Agent", "facebookexternalhit/1.1"}]) do
       {:ok, %{body: body, status_code: status_code}} -> {:ok, body, status_code}
       other                                          -> other
     end
